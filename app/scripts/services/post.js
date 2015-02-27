@@ -7,7 +7,9 @@ app.factory('Post', function($firebase, FIREBASE_URL){
     var Post = {
     	all: posts,
     	create: function (post) {
-    		return posts.$add(post); //add the post to this
+    		return posts.$add(post).then(function(postRef){
+                $firebase(ref.child('user_posts').child(post.creatorUID)).$push(postRef.name()); //add user profile info to post
+            }); //add the post to this
     	},
     	get: function (postId) {
     		return $firebase(ref.child('posts').child(postId)).$asObject(); //pull this post from our 'posts' section with this postId, as an object

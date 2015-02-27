@@ -23,6 +23,12 @@
     </form>
     <ul class="nav navbar-nav navbar-right">
       <li ng-show="signedIn()">
+        <a ng-href="user.profile.uid">
+          {{ user.profile.username }}
+          <img ng-src="http://www.gravatar.com/avatar/{{user.profile.md5_hash}}" alt="" class="nav-pic">
+        </a> 
+      </li>
+      <li ng-show="signedIn()">
         <a href="#/login" ng-click="logout()">Logout</a>
       </li>
       <li ng-hide="signedIn()">
